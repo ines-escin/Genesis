@@ -69,7 +69,7 @@ router.get('/get', function(request, response){
 
 router.post('/subscription', function(request,response){
 	console.log('recebi assinatura');
-	console.log(request.body.contextResponses[0].id);
+	
 });
 
 app.use('/genesis', router);
