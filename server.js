@@ -33,7 +33,7 @@ var subscriptionBody = {
     "notifyConditions": [
         {
             "type": "ONCHANGE",
-            "condValues": [ "temperature" ]
+            "condValues": [ "level" ]
         }
     ],
     "throttling": "PT5S"
