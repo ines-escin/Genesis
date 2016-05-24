@@ -68,7 +68,8 @@ router.get('/get', function(request, response){
 });
 
 router.post('/subscription', function(request,response){
-	console.log('recebi assinatura');
+	console.log(request.body.contextResponses[0].contextElement.id);
+    console.log(new Date());
 });
 
 app.use('/genesis', router);
