@@ -33,7 +33,7 @@ var subscriptionBody = {
     "notifyConditions": [
         {
             "type": "ONCHANGE",
-            "condValues": []
+            "condValues": [ "temperature" ]
         }
     ],
     "throttling": "PT5S"
@@ -69,7 +69,6 @@ router.get('/get', function(request, response){
 
 router.post('/subscription', function(request,response){
 	console.log('recebi assinatura');
-	
 });
 
 app.use('/genesis', router);
