@@ -58,7 +58,7 @@ function callback(error,response,body)
 var checkPoints = schedule.scheduleJob('* /1 * * * *', function(){
 	var currentTimeMillis  = Date.now();
 	var keys = timeMap.keys();
-	for(int i = 0; i < keys.length; i++ )
+	for(var i = 0; i < keys.length; i++ )
 	{
 		var lastTimeUpdated = timeMap.get(keys[i]);
 		var status = "not_broken";
