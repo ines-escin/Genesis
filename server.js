@@ -49,10 +49,7 @@ var subscriptionOptions = {
 
 function callback(error,response,body)
 {
-	if(!error && response.statusCode == 200)
-	{
-		console.log(body);
-	}
+	console.log(body);
 }
 
 var checkPoints = schedule.scheduleJob('10 * * * * *', function(){
@@ -96,6 +93,8 @@ var checkPoints = schedule.scheduleJob('10 * * * * *', function(){
 		}
 
 		request(updateOptions,callback);
+		console.log(keys[i]);
+		console.log(status);
 		console.log('Sent');
 	}
 	console.log('Schedule over');
