@@ -56,6 +56,7 @@ function callback(error,response,body)
 }
 
 var checkPoints = schedule.scheduleJob('* /1 * * * *', function(){
+	console.log('Schedule started');
 	var currentTimeMillis  = Date.now();
 	var keys = timeMap.keys();
 	for(var i = 0; i < keys.length; i++ )
@@ -116,6 +117,7 @@ router.post('/subscription', function(request,response){
 	var id = request.body.contextResponses[0].contextElement.id;
     var timeMillis = Date.now();
     timeMap.set(id, timeMillis);
+    console.log(id + ' changed');
 });
 
 app.use('/genesis', router);
