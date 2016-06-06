@@ -66,13 +66,6 @@ var checkPoints = schedule.scheduleJob('10 * * * * *', function(){
 			status = "broken";
 		} 
 		
-		var updateOptions = {
-    			url: "http://130.206.119.206:1026/v1/updateContext",
-    			method: "POST",
-    			json: true,   
-    			body: updateBody
-			};
-
 		var updateBody = { 
 		    "contextElements": [ 
 		        { 
@@ -91,6 +84,14 @@ var checkPoints = schedule.scheduleJob('10 * * * * *', function(){
 		        ], 
 		        "updateAction": "APPEND" 
 		}
+
+		var updateOptions = {
+    			url: "http://130.206.119.206:1026/v1/updateContext",
+    			method: "POST",
+    			headers: { 'Content-Length': updateBody.length},
+    			json: true,   
+    			body: updateBody
+		};
 
 		request(updateOptions,callback);
 		console.log(keys[i]);
