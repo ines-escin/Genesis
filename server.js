@@ -55,7 +55,7 @@ function callback(error,response,body)
 	}
 }
 
-var checkPoints = schedule.scheduleJob('* /1 * * * *', function(){
+var checkPoints = schedule.scheduleJob('10 * * * * *', function(){
 	console.log('Schedule started');
 	var currentTimeMillis  = Date.now();
 	var keys = timeMap.keys();
@@ -98,6 +98,7 @@ var checkPoints = schedule.scheduleJob('* /1 * * * *', function(){
 		request(updateOptions,callback);
 		console.log('Sent');
 	}
+	console.log('Schedule over');
 });
 
 request(subscriptionOptions,callback);
