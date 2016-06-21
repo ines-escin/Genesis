@@ -16,7 +16,30 @@ mongoose.connect('mongodb://localhost/api', function(err) {
     }
 });
 
+var nucleusSchema = mongoose.Schema({
+	name : String,
+	timeStamp : Number
+});
+
+var Nucleus = mongoose.model('Nucleus', nucleusSchema);
+
 var timeMap = new HashMap();
+
+Nucleus.find(function (err, storedPoints){
+	 if (err) return console.error(err);
+	 if( storedPoints.length > 0)
+	 {
+	 	console.log("Retrieving points from database...");
+	 }
+	 else
+	 {
+	 	return console.log("No points found in the database");
+	 }
+	 for(var i = 0; i < storedPoints.length; i++){
+	 	timeMap.set(storedPoints[i].name, storedPoints[i].timeStamp);
+	}
+});
+
 
 var subscriptionBody = {
     "entities": [
@@ -118,7 +141,11 @@ router.post('/subscription', function(request,response){
 	var id = request.body.contextResponses[0].contextElement.id;
     var timeMillis = Date.now();
     timeMap.set(id, timeMillis);
-    console.log(id + ' changed');
+    var currentNucleus = new Nucleus({name : id, timeStamp: timeMillis});
+    currentNucleus.save(function (err, currentNucleus) {
+  		if (err) return console.error(err);
+  		return console.log(id + " updated");
+  	});
 });
 
 app.use('/genesis', router);
